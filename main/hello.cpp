@@ -5,8 +5,6 @@ using namespace std;
 // Here is another
 
 int main(void) {
-  cout << "Hello, World\n";
-  cout << "Hello, Jenkins\n";
-  cout << "I have successfully built and run\n";
+  cout << "This is a changed job" << endl;
   return 0;
 }
