@@ -3,25 +3,26 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'npm install'
-        sh 'npm run build'
+        sh "make -C main"
+        echo 'Building folder'
       }
     }
     stage('Test') {
       steps {
-        sh 'npm test'
+         sh "/var/jenkins_home/workspace/pes1ug20cs158/main/hello_exec"
+         echo 'Testing completed'
       }
-
+      
     }
     stage('Deploy') {
       steps {
-        sh 'npm run deploy'
+        echo 'Deployed'
       }
     }
   }
   post {
     always {
-      sh 'npm run cleanup'
+      echo 'Deployment pending'
     }
     success {
       echo 'Pipeline succeeded!'
