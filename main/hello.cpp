@@ -5,6 +5,6 @@ using namespace std;
 // Here is another
 
 int main(void) {
-  cout << "This is a changed job" << endl;
+  cout << "Wow! This happened automatically" << endl;
   return 0;
 }
