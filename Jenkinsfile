@@ -3,32 +3,31 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh "make -C main"
-        echo 'Building folder'
+        sh 'g++ main/sample.cpp -o output'
+        build 'PES1UG20CS127-1'
+        echo 'Build Successful'
       }
     }
     stage('Test') {
       steps {
-         sh "/var/jenkins_home/workspace/pes1ug20cs158/main/hello_exec"
-         echo 'Testing completed'
+        sh './output'
+        echo 'Testing Successful'
       }
-      
     }
     stage('Deploy') {
+      when {
+        expression {
+          currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+        }
+      }
       steps {
-        echo 'Deployed'
+        echo 'Deployment Successful'
       }
     }
   }
   post {
-    always {
-      echo 'Deployment pending'
-    }
-    success {
-      echo 'Pipeline succeeded!'
-    }
     failure {
-      echo 'Pipline failed!'
+      echo 'Pipeline failed'
     }
   }
 }
